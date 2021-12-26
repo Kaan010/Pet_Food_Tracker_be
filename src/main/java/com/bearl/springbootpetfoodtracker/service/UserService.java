@@ -15,6 +15,7 @@ public class UserService {
     private IUserRepository userRepository;
 
     public User saveUser(User user){
+
         user.setId(0L); //dummy id(will be incremented later levels)
         user.setName(user.getName());
         user.setPhoneNumber(user.getPhoneNumber());
@@ -29,5 +30,9 @@ public class UserService {
 
     public Optional<User> findByUsername(String username){
         return userRepository.findByUsername(username);
+    }
+
+    public Optional<User> findByUsernameAndPassword(String username,String password){
+        return userRepository.findByUsernameAndPassword(username, password);
     }
 }

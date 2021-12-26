@@ -1,7 +1,6 @@
 package com.bearl.springbootpetfoodtracker.controller;
 
 import com.bearl.springbootpetfoodtracker.model.Pet;
-import com.bearl.springbootpetfoodtracker.repository.IPetRepository;
 import com.bearl.springbootpetfoodtracker.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,8 +11,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/pet")
 public class PetController {
 
-    @Autowired
-    private PetService petService;
+    private final PetService petService;
+    public PetController(PetService petService) {
+        this.petService = petService;
+    }
 
     @GetMapping
     public ResponseEntity<?> getAllPets() {
@@ -44,9 +45,9 @@ public class PetController {
     }
 
     @PutMapping("{petId}")
-    public ResponseEntity<?> updatePet(@PathVariable Long petId, @RequestBody Pet pet){
+    public ResponseEntity<?> updatePet(@PathVariable Long petId, @RequestBody Pet pet) {
         return new ResponseEntity<>(
-                petService.updatePet(petId,pet),
+                petService.updatePet(petId, pet),
                 HttpStatus.OK
         );
     }
@@ -56,12 +57,6 @@ public class PetController {
         petService.deletePet(petId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
-
-
-
-
 
 
 }
