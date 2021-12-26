@@ -1,7 +1,7 @@
 package com.bearl.springbootpetfoodtracker.repository;
 
 import com.bearl.springbootpetfoodtracker.model.FeedHistory;
-import com.bearl.springbootpetfoodtracker.repository.projection.IFeedHistoryItem;
+import com.bearl.springbootpetfoodtracker.model.projection.IFeedHistoryItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

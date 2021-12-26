@@ -7,7 +7,7 @@ import com.bearl.springbootpetfoodtracker.model.User;
 import com.bearl.springbootpetfoodtracker.repository.IFeedHistoryRepository;
 import com.bearl.springbootpetfoodtracker.repository.IPetRepository;
 import com.bearl.springbootpetfoodtracker.repository.IUserRepository;
-import com.bearl.springbootpetfoodtracker.repository.projection.IFeedHistoryItem;
+import com.bearl.springbootpetfoodtracker.model.projection.IFeedHistoryItem;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -34,7 +34,6 @@ public class FeedHistoryService {
     public FeedHistory saveFeedHistory(FeedHistory feedHistory){
 
         updatePetsFood(feedHistory);
-
         updateUsersFood(feedHistory);
 
         feedHistory.setId(0L);

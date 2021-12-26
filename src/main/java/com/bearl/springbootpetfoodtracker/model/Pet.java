@@ -19,7 +19,7 @@ public class Pet {
     private String name;
 
     @Column(name="age",nullable = false)
-    private Integer age;
+    private Double age;
 
     @Enumerated(EnumType.STRING)
     @Column(name="gender",nullable = false)
@@ -43,5 +43,11 @@ public class Pet {
 
     @Column(name="user_id",nullable = false)
     private Long userId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name="body_type",nullable = false)
+    private BodyType bodyType;
+
+
 
 }

@@ -1,4 +1,4 @@
-package com.bearl.springbootpetfoodtracker.repository.projection;
+package com.bearl.springbootpetfoodtracker.model.projection;
 
 import java.time.LocalDateTime;
 

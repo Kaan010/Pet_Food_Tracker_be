@@ -1,13 +1,13 @@
 package com.bearl.springbootpetfoodtracker.controller;
 
 import com.bearl.springbootpetfoodtracker.model.User;
-import com.bearl.springbootpetfoodtracker.model.UserDto;
+import com.bearl.springbootpetfoodtracker.model.dto.UserInput;
 import com.bearl.springbootpetfoodtracker.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin("http://127.0.0.1:8080/")
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -18,18 +18,25 @@ public class UserController {
     }
 
     //    @CrossOrigin(origins = "http://localhost:8080")
-    @PostMapping("/sign-up/")
+   // @PostMapping("/sign-up")
+    @RequestMapping(
+            value = "/sign-up",
+            produces = "application/json",
+            method = {RequestMethod.POST})
     public ResponseEntity<?> signUp(@RequestBody User user) {
         if (userService.findByUsername(user.getUsername()).isPresent())
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
     }
 
-//    @CrossOrigin(origins = "http://localhost:8080")
-    @PostMapping("/sign-in/")
-    public ResponseEntity<?> checkUserPresentByUserNameAndPassword(@RequestBody UserDto userDto) {
+//   @PostMapping("/sign-in")
+    @RequestMapping(
+            value = "/sign-in",
+            produces = "application/json",
+            method = {RequestMethod.POST})
+    public ResponseEntity<?> checkUserPresentByUserNameAndPassword(@RequestBody UserInput userInput) {
         return new ResponseEntity<>(
-                userService.findByUsernameAndPassword(userDto.getUsername(),userDto.getPassword()),
+                userService.findByUsernameAndPassword(userInput.getUsername(), userInput.getPassword()),
                 HttpStatus.OK
         );
     }
@@ -42,6 +49,7 @@ public class UserController {
                 HttpStatus.OK
         );
     }
+
 
 
 }
